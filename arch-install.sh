@@ -2,18 +2,27 @@
 # Partition (cfdisk) /w swap
 DEVICE='a'
 
-ROOT="/dev/sd${DEVICE}1"
+BOOT="/dev/sd${DEVICE}1"
 SWAP="/dev/sd${DEVICE}2" 
+ROOT="/dev/sd${DEVICE}3" 
+HOME="/dev/sd${DEVICE}4" 
+
+HOST='core'
 
 # Set date/time
 echo "Setting Up Date/Time"
 timedatectl set-ntp true
 
 echo "Formatting"
+mkfs.ext4 "$BOOT"
 mkfs.ext4 "$ROOT"
+mkfs.ext4 "$HOME"
 mkswap "$SWAP"
 swapon "$SWAP"
+echo "Mounting"
+mount "$BOOT" /mnt/boot
 mount "$ROOT" /mnt
+mount "$HOME" /mnt/home
 
 # Edit Mirrors
 echo "Editing Mirror List"
@@ -43,12 +52,8 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
 # Network
 echo "Setting Up Network"
-echo "core" > /etc/hostname
-# edit /etc/hosts to show:
-# 127.0.0.1	localhost
-# ::1		localhost
-# 127.0.1.1	myhostname.localdomain	myhostname
-echo "127.0.0.1\tlocalhost\n\
+echo "${HOST}" > /etc/hostname
+echo -e "127.0.0.1\tlocalhost\n\
 		::1\tlocalhost\n\
 		127.0.1.1\${HOST}.localdomain\t${HOST}" >> /etc/hosts
 
