@@ -5,14 +5,9 @@ DEVICE='a'
 ROOT="/dev/sd${DEVICE}1"
 SWAP="/dev/sd${DEVICE}2" 
 
-# check connection
-
-#ip link
-#ping archlinux.org
 # Set date/time
 echo "Setting Up Date/Time"
 timedatectl set-ntp true
-timedatectl status
 
 echo "Formatting"
 mkfs.ext4 "$ROOT"
@@ -28,7 +23,7 @@ mv ./mirrorlist /etc/pacman.d/mirrorlist
 
 # Installation
 echo "Installing Base Arch"
-pacstrap /mnt base
+pacstrap /mnt base base-devel vim grub dialog networkmanager
 echo "Installation Complete!\n"
 
 echo "Generating fstab"
@@ -41,7 +36,7 @@ cat <<'EOF'  > /mnt/chroot-script
 echo "Inside chroot-script"
 echo "Setting Locale"
 ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
-generate /etc/adjtime
+# generate /etc/adjtime
 hwclock --systohc
 sed -i 's/#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen
 locale-gen
@@ -63,7 +58,6 @@ passwd
 # systemctl enable dhcpcd
 # useradd -m user
 # passwd user
-# pacman -S sudo vim grub dialog
 # usermod -aG wheel,audio,video,optical,storage user
 # uncomment line to allow wheel users to execute any command using visudo
 # visudo
