@@ -30,7 +30,7 @@ echo "Generating fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
 
 
-cat << EOF | arch-chroot /mnt 
+cat << EOF > /mnt/chroot-script
 # Locale
 echo "Inside chroot-script"
 echo "Setting Locale"
@@ -66,3 +66,7 @@ echo "Installing Bootloader"
 grub-install "/dev/sd${DEVICE}"
 grub-mkconfig -o /boot/grub/grub.cfg
 EOF
+
+chmod +x /mnt/chroot-script
+
+arch-chroot /mnt ./chroot-script
