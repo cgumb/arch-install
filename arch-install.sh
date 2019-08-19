@@ -18,7 +18,8 @@ mount "$ROOT" /mnt
 
 # Edit Mirrors
 grep -A1 "United States" /etc/pacman.d/mirrorlist | \
-grep -v "\-\-" | grep -v "^#" > /etc/pacman.d/mirrorlist
+grep -v "\-\-" | grep -v "^#" > ./mirrorlist
+mv ./mirrorlist /etc/pacman.d/mirrorlist
 # Install!
 pacstrap /mnt base
 
