@@ -34,10 +34,11 @@ echo "Installation Complete!\n"
 echo "Generating fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
 
-echo "chroot"
-arch-chroot /mnt
 
+echo "Creating chroot-script"
+cat <<'EOF'  > /mnt/chroot-script 
 # Locale
+echo "Inside chroot-script"
 echo "Setting Locale"
 ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
 generate /etc/adjtime
@@ -71,3 +72,9 @@ passwd
 echo "Installing Bootloader"
 grub-install "/dev/sd${DEVICE}"
 grub-mkconfig -o /boot/grub/grub.cfg
+EOF
+
+chmod +x /mnt/chroot-script
+
+echo "chroot"
+arch-chroot /mnt ./chroot-script
