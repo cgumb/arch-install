@@ -23,8 +23,8 @@ mv ./mirrorlist /etc/pacman.d/mirrorlist
 # Install!
 pacstrap /mnt base
 
-#genfstab -U /mnt >> /mnt/etc/fstab
-#arch-chroot /mnt
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
 # set timezone
 #ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
 # generate /etc/adjtime
