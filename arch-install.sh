@@ -1,11 +1,12 @@
+#!/bin/sh
 # Partition (cfdisk) /w swap
 PART='a'
 
-ROOT="dev/sd${PART}1"
+ROOT="/dev/sd${PART}1"
 SWAP="/dev/sd${PART}2" # check connection
 
-ip link
-ping archlinux.org
+#ip link
+#ping archlinux.org
 # Set date/time
 timedatectl set-ntp true
 timedatectl status
