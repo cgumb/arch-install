@@ -19,10 +19,11 @@ mkfs.ext4 "$ROOT"
 mkfs.ext4 "$HOME"
 mkswap "$SWAP"
 swapon "$SWAP"
+
 echo "Mounting"
-mount "$BOOT" /mnt/boot
+mkdir /mnt/boot && mount "$BOOT" /mnt/boot
 mount "$ROOT" /mnt
-mount "$HOME" /mnt/home
+mkdir /mnt/home &&mount "$HOME" /mnt/home
 
 # Edit Mirrors
 echo "Editing Mirror List"
@@ -54,7 +55,7 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 echo "Setting Up Network"
 echo "${HOST}" > /etc/hostname
 echo -e "127.0.0.1\tlocalhost\n\
-		::1\tlocalhost\n\
+		::1\t\tlocalhost\n\
 		127.0.1.1\t${HOST}.localdomain\t${HOST}" >> /etc/hosts
 
 echo "Creating Root Password"
