@@ -55,7 +55,7 @@ echo "Setting Up Network"
 echo "${HOST}" > /etc/hostname
 echo -e "127.0.0.1\tlocalhost\n\
 		::1\tlocalhost\n\
-		127.0.1.1\${HOST}.localdomain\t${HOST}" >> /etc/hosts
+		127.0.1.1\t${HOST}.localdomain\t${HOST}" >> /etc/hosts
 
 echo "Creating Root Password"
 passwd
