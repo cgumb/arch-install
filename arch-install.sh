@@ -26,13 +26,14 @@ mount "$ROOT" /mnt
 mkdir /mnt/home && mount "$HOME" /mnt/home
 
 # Edit Mirrors
-echo "Editing Mirror List"
-grep -A1 "United States" /etc/pacman.d/mirrorlist | \
-grep -v "\-\-" | grep -v "^#" > ./mirrorlist
-mv ./mirrorlist /etc/pacman.d/mirrorlist
+#echo "Editing Mirror List"
+#grep -A1 "United States" /etc/pacman.d/mirrorlist | \
+#grep -v "\-\-" | grep -v "^#" > ./mirrorlist
+#mv ./mirrorlist /etc/pacman.d/mirrorlist
 
 # Installation
 echo "Installing Base Arch"
+# dhcpd not found?
 pacstrap /mnt base base-devel neovim grub dialog networkmanager linux \
 	linux-firmware usbutils inetutils dhcpd man-pages man-db netctl \
 	xf86-video-intel
