@@ -35,7 +35,7 @@ mkdir /mnt/home && mount "$HOME" /mnt/home
 echo "Installing Base Arch"
 # dhcpd not found?
 pacstrap /mnt base base-devel neovim grub dialog networkmanager linux \
-	linux-firmware usbutils inetutils dhcpd man-pages man-db netctl \
+	linux-firmware usbutils inetutils man-pages man-db netctl \
 	xf86-video-intel
 echo "Installation Complete!\n"
 
