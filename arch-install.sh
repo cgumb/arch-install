@@ -23,7 +23,7 @@ swapon "$SWAP"
 echo "Mounting"
 mkdir /mnt/boot && mount "$BOOT" /mnt/boot
 mount "$ROOT" /mnt
-mkdir /mnt/home &&mount "$HOME" /mnt/home
+mkdir /mnt/home && mount "$HOME" /mnt/home
 
 # Edit Mirrors
 echo "Editing Mirror List"
