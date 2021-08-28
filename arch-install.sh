@@ -3,9 +3,9 @@
 DEVICE='a'
 
 BOOT="/dev/sd${DEVICE}1"
-SWAP="/dev/sd${DEVICE}2" 
-ROOT="/dev/sd${DEVICE}3" 
-HOME="/dev/sd${DEVICE}4" 
+SWAP="/dev/sd${DEVICE}2"
+ROOT="/dev/sd${DEVICE}3"
+HOME="/dev/sd${DEVICE}4"
 
 HOST='core'
 
@@ -33,7 +33,9 @@ mv ./mirrorlist /etc/pacman.d/mirrorlist
 
 # Installation
 echo "Installing Base Arch"
-pacstrap /mnt base base-devel vim grub dialog networkmanager
+pacstrap /mnt base base-devel neovim grub dialog networkmanager linux \
+	linux-firmware usbutils inetutils dhcpd man-pages man-db netctl \
+	xf86-video-intel
 echo "Installation Complete!\n"
 
 echo "Generating fstab"
