@@ -39,8 +39,8 @@ pacman -Syyy
 echo "Installing Base Arch"
 # dhcpd not found?
 pacstrap /mnt base base-devel neovim grub efibootmgr dialog networkmanager network-manager-applet \
-    wireless_tools wpa_supplicant op-prober linux linux-firmware linux-headers usbutils inetutils man-pages man-db netctl \
-	reflector git bluez bluez-utils cups xdg-utils xdg-users-dirs openssh xf86-video-intel
+    wireless_tools wpa_supplicant os-prober linux linux-firmware linux-headers usbutils inetutils man-pages man-db netctl \
+	reflector git bluez bluez-utils cups xdg-utils xdg-user-dirs openssh xf86-video-intel
 echo "Installation Complete!\n"
 
 echo "Generating fstab"
