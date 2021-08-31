@@ -32,7 +32,7 @@ mount "$ROOT" /mnt
 #grep -v "\-\-" | grep -v "^#" > ./mirrorlist
 #mv ./mirrorlist /etc/pacman.d/mirrorlist
 yes | pacman -Sy reflector
-reflector -C US -a 6 --sort rate --save /etc/pacman.d/mirrorlist
+reflector --country 'US' -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syyy
 
 # Installation
